@@ -104,12 +104,12 @@ class Reversal:
         results["Date Added"] = self.current_date
 
         if len(self.watchlist.index) == 0:
-            self.watchlist = results.copy()
+            self.watchlist = results
         else:
             for index, row in results.iterrows():
                 if index not in self.watchlist.index:
-                    self.watchlist = self.watchlist.append(row)
-        self.watchlist = self.watchlist.copy().sort_values("Ticker")
+                    self.watchlist.loc[index] = row
+        self.watchlist.sort_values("Ticker", inplace=True)
 
     def update_watchlist(self):
         if len(self.watchlist.index) == 0:
