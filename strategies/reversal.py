@@ -33,8 +33,10 @@ class Reversal:
         def format_earnings_datetime(x: str):
             if pd.isna(x):
                 return x
-            elif x[-1] == "b" or x[-1] == "a":
+            elif x[-1] == "b":
                 return datetime.strptime(f"{x[:-2]}, 2021 08:30AM", "%b %d, %Y %I:%M%p")
+            elif x[-1] == "a":
+                return datetime.strptime(f"{x[:-2]}, 2021 04:00PM", "%b %d, %Y %I:%M%p")
             try:
                 return datetime.strptime(f"{x}, 2021 04:00PM", "%d-%b, %Y %I:%M%p")
             except ValueError:
